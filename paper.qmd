@@ -1,0 +1,133 @@
+---
+title: "Foreign Aid, Democracy and Human Rights: A glimpse into Latin America"
+author: "Aadya Mishra"
+format:
+  cmc-article-pdf:
+    fontsize: 12pt
+    margin-left: 1.5in
+    margin-right: 1.5in
+    margin-bottom: 1.2in
+    margin-top: 1.2in
+    keep-tex: true
+    fig-pos: 'tbp'
+    tbl-pos: 'tbp'
+    include-in-header: header.tex
+bibliography: bibliography.bib
+abstract: | 
+  Popular studies investigating the role of foreign aid in democracy and human rights promotion often suffer from endogeneity. Following the novel approach used by Carnegie & Marinov, we introduce three new covariates — natural resource rent, conflict and sources of other aid — to critically evaluate the effect size of foreign aid. Subsequently, we conduct a heterogeneity test and find statistically significant effects for foreign aid in Latin America, underscoring European Union's unique approach to aid-giving that differentiates Latin America from others.
+ 
+---
+
+# Introduction
+
+Does foreign aid wield an influence in shaping a country’s political institutions, freedoms and rights? Some studies in support of this argument cite an incentive mechanism in effect, when disbursement of aid is conditioned upon a nation’s commitment to fortify its democratic institutions and human rights. [@carnegie2017foreign] However, competing hypothesis predicts weaker or even negative influence of aid, and their methodology often suffers from undealt problems of endogeneity and reverse causality. Indeed, aid allocations aren’t randomly assigned, and may in turn be affected by the pre-existing levels of democracy and rights.
+
+In this study, we adopt the approach used by @carnegie2017foreign to determine foreign aid’s influence. In narrowing our focus to multilateral development assistance flows disbursed by the European Union, we avail a novel as-if random instrument to eliminate biases from endogeneity in aid allocation, that is uncorrelated with the recipient country’s democracy and rights: the member state occupying European council presidency. The European Union rotates the council presidency seat every 6 months across all EU member states, and by its virtue, the designated member state wields power over budgeting aid during its tenure. Due to the shared history between an EU member state occupying the presidency and its former colonies, often an EU state motivated by national interest balances its financial favours to their former colonies by allocating aid through European Union’s funds during their presidential term. While this helps fix a clear directional cause to aid disbursement that is uncorrelated to the recipient country, the ultimate decision to disburse the aid rests on European Commission’s observation of a colony’s dedicated efforts to improve its democratization and human rights outcomes. Since improvements in human rights outcomes are more flexible and immediate to demonstrate, we observe that aid recipient countries have incentives to significantly improve their human rights conditions in response to aid, and eventually, but significantly, build their democratic propensity as well. 
+
+We take Carnegie’s approach a step ahead and analyse how the complex interaction changes in the presence of resource dependence and conflicts by adding additional covariates for total natural resource rents and battle deaths, also followed as a standard practice in literature.[@https://doi.org/10.1111/kykl.12018] While @carnegie2017foreign account for petroleum imports, addition of natural resource rents lends a more comprehensive overview of resource dependency in terms of composition. As natural resource industries tend to be state-owned, they provide political leaders with lucrative and easily taxed sources of fund, thus diminishing state accountability. Additionally, conflicts constrain democratic & human rights processes.
+
+@carnegie2017foreign suggested minimal impact of their chosen covariates on altering aid effect size, and dismissed indicators for total multilateral and democratic aid flowing into recipient country over and above EU aid. Accounting for total multilateral and democratic aid exposure is also crucial as EU’s democratic prerequisites to aid would be felt stronger by recipients that receive more EU aid relative to other sources of aid. 
+
+We observe that as we add these covariates to the specification, although not statistically significant, the effect size on aid effect overall grows small. Subsequently, when we perform analysis for foreign aid’s heterogenous effects across world regions, we observe a statistically significantly positive, but modest, effect of EU aid on Latin American countries, after controlling additionally for natural resource & oil dependence, and other sources of aid. Latin American governments’ intrinsic tendency to be less politically representative consequent to its large stocks of natural resource and oil rents, is trumped by the political demands of the EU, which maintained a large composition of aid flows for this part of the world in the 1990s relative to other regions, and hence elicits a greater degree of external accountability for performance. The incentive effect was stronger from EU aids, as they were directly directed towards democratic capacity building and required mutual discussions for how aid was to be allocated, in contrast to the other one-sided US aid flows operational in Latin America.[@young2002] This study’s conclusion illuminates on the idea that an ideal mix of aid protocols, incentive effects and aid composition positively affects democratization and human rights.
+
+# Data and Methods
+
+We measure overall respect for human rights using the human empowerment index from Cingranelli – Richards (CIRI) Human Rights Dataset.[@carnegie2017foreign] Constructed as an additive index from the following indicators, index ranges from 0, indicating no government respect for rights, to 14, indicating full government respect for rights: Foreign Movement, Domestic Movement, Freedom of Speech, Freedom of Assembly and Association, Worker’s Rights, Electoral Self-Determination, and Freedom of Religion.
+
+As a standard in literature, to measure democratization, we use polity IV combined score[@carnegie2017foreign]. Unlike binary measures of democracy, the polity index ranging from -10 to 10, from least to most democratic, captures subtle variations in democracy using the following indicators: measures of regulation and competitiveness of participation, openness and competitiveness of executive recruitment, and constraints on the chief executive. 
+
+We estimate the following model of 2SLS:
+
+\begin{align*}
+DV_{it^{\prime}}=\beta_{0}+\beta_{1}log(ODA)_{i(t-1)}+\sum_{k\in K}\beta_{k}I(i=k)
++\sum_{j\in J}\beta_{j}I(t=j)+.u_{it}
+\end{align*}
+
+\begin{align*}
+\log(ODA)_{i(t-1)} &= \gamma_0 + \gamma_1 Colony_{i(t-2){2}} + \sum_{k \in K} \gamma_k I(i=k)\ + \sum_{j \in J} \gamma_j I(t=j) + \epsilon_{it}
+\end{align*} 
+
+where in the second-stage regression, $DV_{it^{\prime}}$ is a measure of rights and democracy for country *i* in year(s) *t’* $\geq$ *t*. For this model, we average our dependent variables over 4 years from year *t* through year *t+3* as it takes time for improvements to appear in human rights and democracy scores. $log(ODA)_{i(t-1)}$ is the logged net EU official development assistance (ODA; in millions of 1995 constant US dollars) in year *t–1*. I(.) for the two summations is the indicator function for year and fixed effects respectively and $u_{it}$ is observed error term. 
+
+To purge ODA of endogeneity such that $log(ODA)_{i(t-1)}$ isn’t systematically related to the recipient countries’ human rights and democracy levels, we use $Colony_{i(t-2){2}}$ as an instrument in the first-stage regression to first get predicted values for $log(ODA)_{i(t-1)}$. $Colony_{i(t-2){2}}$ is an indicator variable for whether or not the country is a former colony of the EU Council presidency in the second 6 months of year *t–2*, when their budget was determined. Since EU council presidency is assigned on rotational basis to EU member states by alphabetical order, it is as good as random and exogenously determined, conditional on fixed effects. Since geopolitical concerns predominated aid sanctions during cold-war era, we restricted our analysis to post-Cold War period from 1986 and to recipient countries that were former colonies of current Council members. For the IV design to work, the instrument is robust to exclusion restriction, as it doesn’t affect $DV_{it^{\prime}}$ directly except through $log(ODA)_{i(t-1)}$.  Additionally, the instrument has to be strongly correlated to $log(ODA)_{i(t-1)}$ to satisfy the relevance criteria and uncorrelated with the error terms, testable from the significance of coefficients in the first-stage regression. 
+
+We further employ fixed effects for country and time on the instrument as well; latter to statistically correct for membership expansion. We avoid an assumption of constant effects in our model, implying that the 2SLS estimator reflects the effect of EU aid that is disbursed if and only if a former colonizer holds the EU Council presidency, and yet we obtain a weighted local average treatment effect (LATE) under this weaker regularity and monotonicity condition.[@carnegie2017foreign]
+
+We use the following recipient characteristics, which previous literature has shown to be related to human rights and democratization: logged exports, logged imports, foreign direct investment (FDI), religiosity, petroleum imports (percent GDP), average education attainment, number of democracies in the region, logged GDP, logged GDP per capita, logged population, number of battle deaths and total natural resource rents(percent GDP). All covariates are lagged twice to avoid post-treatment bias. In this new model we also use logged democratic and multilateral aids as additional covariates but lag it once as we compare its effects relative to European Union's ODA that’s lagged once. [@carnegie2017foreign]
+
+To delve into regional characteristics that may define heterogeneous effects from $log(ODA)_{i(t-1)}$, we also conduct a heterogeneity test across the six regions: South Asia, Latin America, Sub-Saharan Africa, Europe, Middle East, East Asia and Pacific. 
+
+|                        |
+|:-----------------------|
+| ![](/Users/aadyamishra/Desktop/OneDrive - Yale University/AQRD PROJECT/summary_table.png) |
+
+: Summary Statistics 
+
+# Results
+## First Stage Results
+In the CIRI regression, the instrument $Colony_{i(t-2){2}}$ is strongly correlated to $log(ODA)_{i(t-1)}$, with a statistically significant effect of 0.154 using @carnegie2017foreign covariates, and 0.160 without covariates. For polity IV regression, the effect of being a former colony on aid flow is again statistically significant and approximated at 0.174 with covariates, and 0.170 without covariates. Hence, there’s an increased correlation between holding the Council presidency and increased foreign aid to former colonies.
+
+While @carnegie2017foreign reported an F-test score of 10.85 for CIRI regression and 9.87 for Polity IV regression, the F-test score from our replication for Polity IV is reported 6.31, and for CIRI regression, at 5.26. Thus, concerns about the exclusion criteria for validity of instrument cannot be entirely warded off.
+
+## Second Stage Results
+@tbl-main shows the results of the regression. Holding fixed effects for country and time to observe within-country and within-time variation, we find that a 1% increase in ODA, leads to a 0.01705 increase in score for CIRI Index in the presence of covariates with a 95% confidence interval of [0.0684, 3.3416]. While a 1% increase in ODA, leads to a 0.01885 points of increase without covariates with a 95% confidence interval of [-0.018, 3.788].
+
+For Polity IV, a 1% increase in ODA, leads to a 0.01337 points increase in Polity IV Combined Score regression in the presence of covariates with a 95% confidence interval of [0.328,2.3464]. While a 1% increase in ODA, leads to a 0.02031 points increase without covariates with a 95% confidence interval of [0.607,3.455]. 
+
+In @fig-plot, we estimate the impact of foreign aid on unaveraged scores over *t* through *t+5* years without applying covariates, and observe an immediate, positively large effect of foreign aid on human rights outcome that peaks at year *t* and subsequently falls to pre-shock levels. For Polity scores, the positive effect materializes and peaks by *t+2* year. Both Polity and CIRI index improvements appear rather short-lived as aid flows are themselves volatile and short-termed.
+
+
+|                        |
+|:-----------------------|
+| ![](/Users/aadyamishra/Desktop/OneDrive - Yale University/AQRD PROJECT/main_table.png) |
+
+: Replication Results {#tbl-main}
+
+![Effect of Foreign Aid on Dependent Variables over t through t+5 years ](/Users/aadyamishra/Desktop/OneDrive - Yale University/AQRD PROJECT/plot.png){#fig-plot width="100%"}
+
+
+In @tbl-extension, all columns follow the same Instrumental Variables and Fixed Effects specification, but with new covariate model in columns 3-4 and columns 7-8. Columns 1-2 and 5-6 provide estimates from @carnegie2017foreign. We observe that multilateral and democratic aids tend to negatively correlate with CIRI and Polity scores, consistent with @carnegie2017foreign as shown in @tbl-ap of appendix. Majority of such multilateral aids are associated with infrastructure development, and not democracy improvements, thus downplaying the incentive effect. Battle deaths have minimal impact, contrary to standard literature, and could be masking an effect due to limited data availability. Therefore, we conduct regression analysis with and without battle death as covariate, and observe consistently smaller coefficients for CIRI Index. In column 4, aid effect on Polity IV, whilst larger, is definitely much less than simple IV + FE regression model without covariates. @carnegie2017foreign dismiss the pertinence of covariates in their model, arguing that it doesn’t make substantial difference aid coeficient. Based on our analysis, although statistically insignificant because of smaller point estimates, it appears that aid’s impact may be smaller than expected by @carnegie2017foreign.
+
+
+|                        |
+|:-----------------------|
+| ![](/Users/aadyamishra/Desktop/OneDrive - Yale University/AQRD PROJECT/Rplot.png) |
+
+: Variation from covariates {#tbl-extension}
+
+
+In @tbl-LA, controlling for other forms of aid and natural resource rent, along strong correlation in first stage regression, while conducting heterogeneity test, we find a statistically significant effect for aid, although modest in size relative to @carnegie2017foreign. All else equal, whilst holding fixed effects for time and country, a 1% increase in European Union’s ODA leads to a 0.0777 points increase in Latin America’s CIRI Human Empowerment Index with a confidence interval of [-0.022, 1.57], and a 0.02166 points increase in Polity IV Combined Score with a confidence interval of [1.002, 3.33]. 
+
+
+|                        |
+|:-----------------------|
+| ![](/Users/aadyamishra/Desktop/OneDrive - Yale University/AQRD PROJECT/Latin_America.png)|
+
+: Effect of Foreign Aid in Latin America {#tbl-LA}
+
+
+# Conclusion
+
+When a colony’s former coloniser holds the presidency, a statistically significant increase in aid is committed to former colonies, that injects random shocks to aid flows, enabling a nuanced analysis of foreign aid's impact on political and human rights outcomes. While affirming a positive effect of foreign aid, our findings suggest that this impact may be more modest unless key factors such as the incentive structure, continuity in long-term aid provision, and effective supervision over aid allocation are clearly defined, as evident from the case of Latin America. In the 1990s, European Commission used ODA specifically for institution-building and post-conflict support for reinstating democratic normalcy, lending us a statistically positive effect for aid on Latin America.
+
+::: {#refs}
+:::
+
+
+# Appendix {.appendix}
+
+|                        |
+|:-----------------------|
+| ![](/Users/aadyamishra/Desktop/OneDrive - Yale University/AQRD PROJECT/appendix_other_aid.png)|
+
+: Replication of author's results for other aid {#tbl-ap}
+
+While authors lag aid only for Human rights empowerment index, we lag aid for both indices. Effect of aid diminishes with multilateral and democratic aid adjustments.
+
+
+
+
+
+
+
+
